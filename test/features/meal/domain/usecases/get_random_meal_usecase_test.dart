@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meal_app/core/errors/failures.dart';
-import 'package:meal_app/core/usecases/usecase.dart';
 import 'package:meal_app/features/meal/domain/repositories/meal_repository.dart';
 import 'package:meal_app/features/meal/domain/usecases/get_random_meal_usecase.dart';
 import 'package:mocktail/mocktail.dart';
@@ -19,8 +18,6 @@ void main() {
     usecase = GetRandomMealUsecase(repository);
   });
 
-  final tNoParams = NoParams();
-
   final tFailure = ServerFailure();
 
   test("should get a random meal from the repository", () async {
@@ -28,7 +25,7 @@ void main() {
     when(() => repository.getRandomMeal())
         .thenAnswer((_) async => Right(tMeal));
     // Act
-    final result = await usecase(tNoParams);
+    final result = await usecase();
     // Assert
     expect(result, Right(tMeal));
     verify(() => repository.getRandomMeal());
@@ -39,7 +36,7 @@ void main() {
     when(() => repository.getRandomMeal())
         .thenAnswer((_) async => Left(tFailure));
     // Act
-    final result = await usecase(tNoParams);
+    final result = await usecase();
     // Assert
     expect(result, Left(tFailure));
     verify(() => repository.getRandomMeal());

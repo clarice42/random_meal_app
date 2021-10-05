@@ -1,4 +1,4 @@
 class MealEndpoints {
-  static String randomMeal() =>
-      "https://www.themealdb.com/api/json/v1/1/random.php";
+  static Uri getRandomMeal() =>
+      Uri.https("www.themealdb.com", "/api/json/v1/1/random.php", {});
 }

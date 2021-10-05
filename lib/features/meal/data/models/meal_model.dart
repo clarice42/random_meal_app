@@ -2,9 +2,9 @@ import 'package:meal_app/features/meal/domain/entities/meal_entity.dart';
 
 class MealModel extends MealEntity {
   MealModel({
-    required name,
-    required description,
-    required imageUrl,
+    required String name,
+    required String description,
+    required String imageUrl,
   }) : super(
           name: name,
           description: description,

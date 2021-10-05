@@ -10,7 +10,7 @@ class GetRandomMealUsecase implements Usecase<MealEntity, NoParams> {
   GetRandomMealUsecase(this.repository);
 
   @override
-  Future<Either<Failure, MealEntity>> call(NoParams params) async {
+  Future<Either<Failure, MealEntity>> call() async {
     return await repository.getRandomMeal();
   }
 }
